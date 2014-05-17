@@ -7,14 +7,16 @@
 </head>
 <body>
 
-<h1>Hours remaining before you need to clock out</h1>
+<div id="body">
+<h1>Time remaining before clock out</h1>
 
 <div ng-app="clockOut">
 	<div ng-controller="Timer">
-		Time: <input type="text" ng-model="time"><br>
+		Current number of hours: <input type="text" ng-model="time"><br>
 
 		<div id="time">
-			<h1>Hours: {{hours}} Min: {{minutes}} Sec: {{seconds}}</h1>
+			<h3>Time remaining:</h3>
+			<h3>{{hours}}:{{minutes}}:{{seconds}}</h3>
 		</div>
 		<button ng-click="start(time)">Start</button>
 		<div>
@@ -24,6 +26,7 @@
 			<script>document.getElementById("sound").style.display="none";</script>
 		</div>
 	</div>
+</div>
 </div>
 
 </body>

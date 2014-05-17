@@ -3,6 +3,9 @@ var app = angular.module('clockOut', []);
 
 app.controller("Timer", function ($scope,$timeout) {
 	$scope.time = 0;
+	$scope.hours = 0;
+	$scope.minutes = 0;
+	$scope.seconds = 0;
     $scope.counter = 0;
 	$scope.started = false;
 
