@@ -1,0 +1,21 @@
+<html>
+<head>
+	<title>Clock Out</title>
+	<link rel="stylesheet" href="style.css">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js"></script>
+	<script type="text/javascript" src="main.js"></script>
+</head>
+<body>
+
+<h1>Hours remaining before you need to clock out</h1>
+<div ng-app="clockOut">
+	<div ng-controller="Test">
+		Enter hours: <input type="text" ng-model="data.hours">
+		<div>Remaining: {{(40 - data.hours) * 60 | number:0}} min</div>
+		<button type="button" test="testFunction()">Start</button>
+		<timer interval="1000" countdown="100"/>
+	</div>
+</div>
+
+</body>
+</html>
