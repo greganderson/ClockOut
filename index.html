@@ -8,12 +8,13 @@
 <body>
 
 <h1>Hours remaining before you need to clock out</h1>
+
 <div ng-app="clockOut">
-	<div ng-controller="Test">
-		Enter hours: <input type="text" ng-model="data.hours">
-		<div>Remaining: {{(40 - data.hours) * 60 | number:0}} min</div>
-		<button type="button" test="testFunction()">Start</button>
-		<timer interval="1000" countdown="100"/>
+	<div ng-controller="Timer">
+		Time: <input type="text" ng-model="time"><br>
+
+		Remaining: {{counter | number:2}}
+		<button ng-click="start(time)">Start</button>
 	</div>
 </div>
 
