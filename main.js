@@ -11,7 +11,7 @@ app.controller("Timer", function ($scope,$timeout) {
 		if ($scope.counter.toFixed(2) == 0) {
 			$timeout.cancel(mytimeout);
 			console.log("timer expired");
-			alert("done");
+			document.getElementById("sound").play();
 		}
 		else
 			mytimeout = $timeout($scope.onTimeout,10);
