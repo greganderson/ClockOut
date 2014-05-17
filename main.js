@@ -17,10 +17,17 @@ app.controller("Timer", function ($scope,$timeout) {
 		$scope.minutes = parseInt(total);
 		total = (total - $scope.minutes) * 60;
 		$scope.seconds = total.toFixed(2);
+
+		if ($scope.counter.toFixed(2) == 300) {
+			document.getElementById("five_minutes").play();
+		}
+		if ($scope.counter.toFixed(2) == 60) {
+			document.getElementById("one_minute").play();
+		}
 		if ($scope.counter.toFixed(2) == 0) {
 			$timeout.cancel(mytimeout);
 			console.log("timer expired");
-			document.getElementById("sound").play();
+			document.getElementById("warning").play();
 		}
 		else
 			mytimeout = $timeout($scope.onTimeout,10);
@@ -31,7 +38,8 @@ app.controller("Timer", function ($scope,$timeout) {
 		if ($scope.started)
 			return;
 		$scope.started = true;
-		$scope.counter = (40.0 - time) * 60 * 60;
+		// - 30 at the end for the buffer
+		$scope.counter = (40.0 - time) * 60 * 60 - 30;
 		var mytimeout = $timeout($scope.onTimeout,10);
 	}
 })

@@ -20,10 +20,20 @@
 		</div>
 		<button ng-click="start(time)">Start</button>
 		<div>
-			<audio controls id="sound">
-				<source src="tornado_siren.mp3" type="audio/mp3">
+			<audio controls id="five_minutes">
+				<source src="time_alert.mp3" type="audio/mp3">
 			</audio>
-			<script>document.getElementById("sound").style.display="none";</script>
+			<audio controls id="one_minute">
+				<source src="time_alert.mp3" type="audio/mp3">
+			</audio>
+			<audio controls id="warning">
+				<source src="warning.mp3" type="audio/mp3">
+			</audio>
+			<script>
+				document.getElementById("five_minutes").style.display="none";
+				document.getElementById("one_minute").style.display="none";
+				document.getElementById("warning").style.display="none";
+			</script>
 		</div>
 	</div>
 </div>
