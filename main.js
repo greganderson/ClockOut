@@ -8,6 +8,12 @@ app.controller("Timer", function ($scope,$timeout) {
 
     $scope.onTimeout = function() {
         $scope.counter -= .01;
+		var total = $scope.counter / 60 / 60;
+		$scope.hours = parseInt(total);
+		total = (total - $scope.hours) * 60;
+		$scope.minutes = parseInt(total);
+		total = (total - $scope.minutes) * 60;
+		$scope.seconds = total.toFixed(2);
 		if ($scope.counter.toFixed(2) == 0) {
 			$timeout.cancel(mytimeout);
 			console.log("timer expired");
@@ -22,7 +28,7 @@ app.controller("Timer", function ($scope,$timeout) {
 		if ($scope.started)
 			return;
 		$scope.started = true;
-		$scope.counter = (40.0 - time) * 60;
+		$scope.counter = (40.0 - time) * 60 * 60;
 		var mytimeout = $timeout($scope.onTimeout,10);
 	}
 })
