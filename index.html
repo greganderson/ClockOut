@@ -18,22 +18,17 @@
 			<h3>Time remaining:</h3>
 			<h3>{{hours}}:{{minutes}}:{{seconds}}</h3>
 		</div>
-		<button ng-click="start(time)">Start</button>
+		<button class="startButton" ng-click="start(time)">START</button>
 		<div>
-			<audio controls id="five_minutes">
+			<audio id="five_minutes">
 				<source src="time_alert.mp3" type="audio/mp3">
 			</audio>
-			<audio controls id="one_minute">
+			<audio id="one_minute">
 				<source src="time_alert.mp3" type="audio/mp3">
 			</audio>
-			<audio controls id="warning">
+			<audio id="warning">
 				<source src="warning.mp3" type="audio/mp3">
 			</audio>
-			<script>
-				document.getElementById("five_minutes").style.display="none";
-				document.getElementById("one_minute").style.display="none";
-				document.getElementById("warning").style.display="none";
-			</script>
 		</div>
 	</div>
 </div>
