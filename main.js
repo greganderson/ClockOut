@@ -61,6 +61,7 @@ clockoutApp.controller('ClockCtrl', function ($scope,$timeout) {
 			hour = timeArray[0];
 			minutes = timeArray[1];
 			
+			console.log(this.d);
 			$scope.message = 'You should clock out at: ' + calculateTime(timeLeft, hour, minutes) + 'PM';
 		}
 	};
@@ -87,25 +88,37 @@ clockoutApp.controller('ClockCtrl', function ($scope,$timeout) {
 			tempMin = accumulatedTimeArray[1];
 
 			tempMin = "0." + tempMin;
+			
+			console.log(tempMin);
 
 			min = parseFloat(tempMin);
 
 			min = (min * 60);
 			
+			console.log(min);
+
 			hour = +hour + +hrs; 
 			minutes = (+minutes + +min);
-			
+
+			console.log('Min = ' + min);
+			console.log('Minutes = ' + minutes);
+
 			if(minutes > 59) {
 				hour++;
-				minutes = 60 - +minutes;
+				minutes = +minutes - 60;
 			}
 
-			if(minutes < 10)
+			if(minutes < 10){
 				minutes = "0" + minutes;
+			}
 			
+			console.log(minutes);
+
 			hour = hour % 12;
-			if (hour == 0)
+
+			if (hour == 0) {
 				hour = 12;
+			}
 
 			return (hour + ':' + parseInt(minutes)); 
 		}
