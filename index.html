@@ -14,7 +14,7 @@
 
 	<div ng-controller="ClockCtrl">
 		<div>
-			Time clocked in: <input type="text" ng-model="clockedIn">
+			Time clocked in: <input type="text" ng-model="clockedIn"><select ng-model="timeOfDay" ng-options="times for times in dayTime"></select>
 			Hours so far: <input type="text" ng-model="time">
 		</div>
 		<br>

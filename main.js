@@ -8,6 +8,8 @@ clockoutApp.controller('ClockCtrl', function ($scope,$timeout) {
     $scope.counter = 0;
 	$scope.started = false;
 	$scope.d = Date.now();
+	$scope.dayTime = ['AM', 'PM'];
+	$scope.timeOfDay = $scope.dayTime[1];
 
     $scope.onTimeout = function() {
         $scope.counter -= .01;
@@ -61,17 +63,21 @@ clockoutApp.controller('ClockCtrl', function ($scope,$timeout) {
 			hour = timeArray[0];
 			minutes = timeArray[1];
 			
-			console.log(this.d);
-			$scope.message = 'You should clock out at: ' + calculateTime(timeLeft, hour, minutes) + 'PM';
+			console.log(this.timeOfDay);
+			$scope.message = 'You should clock out at: ' + calculateTime(timeLeft, hour, minutes) + ' ' + this.timeOfDay;
 		}
 	};
 	
 	var calculateTime = function(timeLeft, hour, minutes) {
-		
+	
+		// Flag to check if timeLeft is a float
 		var check = timeLeft.toString().indexOf(".");
 
 		if(check === -1) {	
 			hour += timeLeft;
+			
+			determineMeridiem(hour);
+
 			hour = hour % 12;
 
 			if (hour == 0)
@@ -113,7 +119,9 @@ clockoutApp.controller('ClockCtrl', function ($scope,$timeout) {
 			}
 			
 			console.log(minutes);
-
+			
+			determineMeridiem(hour);
+			
 			hour = hour % 12;
 
 			if (hour == 0) {
@@ -123,6 +131,20 @@ clockoutApp.controller('ClockCtrl', function ($scope,$timeout) {
 			return (hour + ':' + parseInt(minutes)); 
 		}
 	
+	};
+	
+	/* Determines whether time has changed from
+	 * AM to PM and vice versa.
+	 */
+	var determineMeridiem = function(hour) {
+			if($scope.timeOfDay == 'AM') {
+				if(hour > 11)
+					$scope.timeOfDay = 'PM';
+			}
+			else {
+				if(hour > 11)
+					$scope.timeOfDay = 'AM'
+			}
 	};
 	
 	$scope.display = function() {
