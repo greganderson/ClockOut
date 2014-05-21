@@ -10,6 +10,7 @@ clockoutApp.controller('ClockCtrl', function ($scope,$timeout) {
 	$scope.d = Date.now();
 	$scope.dayTime = ['AM', 'PM'];
 	$scope.timeOfDay = $scope.dayTime[1];
+	$scope.ampm = 0;
 
     $scope.onTimeout = function() {
         $scope.counter -= .01;
@@ -64,7 +65,7 @@ clockoutApp.controller('ClockCtrl', function ($scope,$timeout) {
 			minutes = timeArray[1];
 			
 			console.log(this.timeOfDay);
-			$scope.message = 'You should clock out at: ' + calculateTime(timeLeft, hour, minutes) + ' ' + this.timeOfDay;
+			$scope.message = 'You should clock out at: ' + calculateTime(timeLeft, hour, minutes) + ' ' + this.ampm;
 		}
 	};
 	
@@ -139,11 +140,11 @@ clockoutApp.controller('ClockCtrl', function ($scope,$timeout) {
 	var determineMeridiem = function(hour) {
 			if($scope.timeOfDay == 'AM') {
 				if(hour > 11)
-					$scope.timeOfDay = 'PM';
+					$scope.ampm = 'PM';
 			}
 			else {
 				if(hour > 11)
-					$scope.timeOfDay = 'AM'
+					$scope.ampm = 'AM'
 			}
 	};
 	
