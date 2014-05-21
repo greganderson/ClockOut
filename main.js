@@ -74,9 +74,9 @@ clockoutApp.controller('ClockCtrl', function ($scope,$timeout) {
 		// Flag to check if timeLeft is a float
 		var check = timeLeft.toString().indexOf(".");
 
-		if(check === -1) {	
-			hour += timeLeft;
-			
+		if(check === -1) {
+			hour = +timeLeft + +hour;
+		
 			determineMeridiem(hour);
 
 			hour = hour % 12;
