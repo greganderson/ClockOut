@@ -10,7 +10,7 @@ clockoutApp.controller('ClockCtrl', function ($scope,$timeout) {
 	$scope.d = Date.now();
 	$scope.dayTime = ['AM', 'PM'];
 	$scope.timeOfDay = $scope.dayTime[1];
-	$scope.ampm = 0;
+	$scope.ampm = 'null';
 
     $scope.onTimeout = function() {
         $scope.counter -= .01;
@@ -127,13 +127,18 @@ clockoutApp.controller('ClockCtrl', function ($scope,$timeout) {
 	 * AM to PM and vice versa.
 	 */
 	var determineMeridiem = function(hour) {
+			
 			if($scope.timeOfDay == 'AM') {
 				if(hour > 11)
 					$scope.ampm = 'PM';
+				else
+					$scope.ampm = 'AM';
 			}
 			else {
 				if(hour > 11)
-					$scope.ampm = 'AM'
+					$scope.ampm = 'AM';
+				else
+					$scope.ampm = 'PM';
 			}
 	};
 	
