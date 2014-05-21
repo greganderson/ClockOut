@@ -14,11 +14,15 @@
 <div ng-app="clockOut">
 
 	<div ng-controller="ClockCtrl">
-		<timepicker ng-model="mytime"></timepicker>
-		<pre class="alert alert-info">Time is: {{mytime | date:'shortTime' }}</pre>
+		<div class="container-fluid">
+			<div class="row">
+					Time clocked in:
+					<timepicker ng-model="mytime"></timepicker>
+					<pre class="alert alert-info">Time is: {{mytime | date:'shortTime' }}</pre>
+			</div>
+		</div>
 		<div>
-			Time clocked in: <input type="text" ng-model="clockedIn"><select ng-model="timeOfDay" ng-options="times for times in dayTime"></select>
-			Hours so far: <input type="text" ng-model="time">
+			Hours so far: <input type="text" class="form-control" ng-model="time">
 		</div>
 		<br>
 		<div>{{ display() }}</div>
@@ -26,8 +30,9 @@
 		<div id="time">
 			<h3>Time remaining:</h3>
 			<h3>{{hoursRemaining}}:{{minutesRemaining}}:{{secondsRemaining}}</h3>
+
 		</div>
-		<button class="startButton" ng-click="calculate(clockedIn, time);">START</button>
+		<button class="btn btn-default" ng-click="calculate(time);">START</button>
 		<div>
 			<audio id="five_minutes">
 				<source src="time_alert.mp3" type="audio/mp3">

@@ -8,8 +8,6 @@ clockoutApp.controller('ClockCtrl', function ($scope,$timeout) {
     $scope.counter = 0;
 	$scope.started = false;
 	$scope.d = new Date();
-	$scope.dayTime = ['AM', 'PM'];
-	$scope.timeOfDay = $scope.dayTime[1];
 	$scope.ampm = 'null';
 	$scope.h = 0;
 	$scope.m = 0;
@@ -70,28 +68,25 @@ clockoutApp.controller('ClockCtrl', function ($scope,$timeout) {
 	/**************************** UMAIR START ************************/
 
 
-	$scope.calculate = function (_timeIn, _hours) {
-		if(_timeIn, _hours) {
+	$scope.calculate = function (_timeIn) {
+		if(_timeIn) {
 			var timeArray, hour, minutes, totalTime, timeLeft, hoursWorked; 
 			
-			timeLeft = 40 - _hours;
+			hour = $scope.d.getHours();
+			minutes = $scope.d.getMinutes();
+			timeLeft = 40 - hour;
 			
-			timeArray = _timeIn.split(":");
-			
-			hour = timeArray[0];
-			minutes = timeArray[1];
 
 			$scope.h = parseInt(hour);
 			$scope.m = parseInt(minutes);
 
-			$scope.start(_hours);
+			$scope.start(hour);
 			
 			$scope.message = 'You should clock out at: ' + calculateTime(timeLeft, hour, minutes) + ' ' + this.ampm;
 		}
 	};
 	
 	var calculateTime = function(timeLeft, hour, minutes) {
-	
 		// Flag to check if timeLeft is a float
 		var check = timeLeft.toString().indexOf(".");
 
@@ -104,6 +99,8 @@ clockoutApp.controller('ClockCtrl', function ($scope,$timeout) {
 
 			if (hour == 0)
 				hour = 12;
+			if (minutes < 10)
+				minutes = '0' + minutes;
 			
 			return (hour + ':' + minutes);
 		}
@@ -150,19 +147,10 @@ clockoutApp.controller('ClockCtrl', function ($scope,$timeout) {
 	 * AM to PM and vice versa.
 	 */
 	var determineMeridiem = function(hour) {
-			
-			if($scope.timeOfDay == 'AM') {
-				if(hour > 11)
-					$scope.ampm = 'PM';
-				else
-					$scope.ampm = 'AM';
-			}
-			else {
-				if(hour > 11)
-					$scope.ampm = 'AM';
-				else
-					$scope.ampm = 'PM';
-			}
+			if(hour > 11 && hour < 24)
+				$scope.ampm = 'PM';
+			else
+				$scope.ampm = 'AM';
 	};
 	
 	$scope.display = function() {
