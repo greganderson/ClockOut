@@ -7,10 +7,12 @@ clockoutApp.controller('ClockCtrl', function ($scope,$timeout) {
 	$scope.secondsRemaining = 0;
     $scope.counter = 0;
 	$scope.started = false;
-	$scope.d = Date.now();
+	$scope.d = new Date();
 	$scope.dayTime = ['AM', 'PM'];
 	$scope.timeOfDay = $scope.dayTime[1];
 	$scope.ampm = 'null';
+	$scope.h = 0;
+	$scope.m = 0;
 
     $scope.onTimeout = function() {
         $scope.counter -= .01;
@@ -41,10 +43,22 @@ clockoutApp.controller('ClockCtrl', function ($scope,$timeout) {
 			return;
 		$scope.started = true;
 		// - 30 at the end for the buffer
-		$scope.counter = (40.0 - time) * 60 * 60 - 30;
+		var total = (40.0 - time) * 60 * 60 - 30;
+
+		if ($scope.timeOfDay == 'PM')
+			$scope.h += 12;
+		
+		var overHours = $scope.d.getHours() - $scope.h;
+		var overMinutes = $scope.d.getMinutes() - $scope.m;
+
+		total = total - (overHours * 60 * 60) - (overMinutes * 60);
+
+
+
+		$scope.counter = total;
+
 		var mytimeout = $timeout($scope.onTimeout,10);
 	}
-
 
 
 
@@ -62,6 +76,11 @@ clockoutApp.controller('ClockCtrl', function ($scope,$timeout) {
 			
 			hour = timeArray[0];
 			minutes = timeArray[1];
+
+			$scope.h = parseInt(hour);
+			$scope.m = parseInt(minutes);
+
+			$scope.start(_hours);
 			
 			$scope.message = 'You should clock out at: ' + calculateTime(timeLeft, hour, minutes) + ' ' + this.ampm;
 		}
