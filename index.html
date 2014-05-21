@@ -1,8 +1,9 @@
-<html>
+<html ng-app="clockOut">
 <head>
 	<title>Clock Out</title>
-	<link rel="stylesheet" href="style.css">
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.3/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.js"></script>
+	<script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
+	<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 	<script type="text/javascript" src="main.js"></script>
 </head>
 <body>
@@ -13,6 +14,8 @@
 <div ng-app="clockOut">
 
 	<div ng-controller="ClockCtrl">
+		<timepicker ng-model="mytime"></timepicker>
+		<pre class="alert alert-info">Time is: {{mytime | date:'shortTime' }}</pre>
 		<div>
 			Time clocked in: <input type="text" ng-model="clockedIn"><select ng-model="timeOfDay" ng-options="times for times in dayTime"></select>
 			Hours so far: <input type="text" ng-model="time">

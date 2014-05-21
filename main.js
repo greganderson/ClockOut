@@ -1,4 +1,4 @@
-var clockoutApp = angular.module('clockOut', []);
+var clockoutApp = angular.module('clockOut', ['ui.bootstrap']);
 
 clockoutApp.controller('ClockCtrl', function ($scope,$timeout) {
 	$scope.time = 0;
@@ -13,6 +13,10 @@ clockoutApp.controller('ClockCtrl', function ($scope,$timeout) {
 	$scope.ampm = 'null';
 	$scope.h = 0;
 	$scope.m = 0;
+
+	var TimepickerDemoCtrl = function ($scope) {
+		$scope.mytime = new Date();
+	};
 
     $scope.onTimeout = function() {
         $scope.counter -= .01;
