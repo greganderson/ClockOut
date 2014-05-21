@@ -29,7 +29,6 @@ clockoutApp.controller('ClockCtrl', function ($scope,$timeout) {
 		}
 		if ($scope.counter.toFixed(2) == 0) {
 			$timeout.cancel(mytimeout);
-			console.log("timer expired");
 			document.getElementById("warning").play();
 		}
 		else
@@ -64,7 +63,6 @@ clockoutApp.controller('ClockCtrl', function ($scope,$timeout) {
 			hour = timeArray[0];
 			minutes = timeArray[1];
 			
-			console.log(this.timeOfDay);
 			$scope.message = 'You should clock out at: ' + calculateTime(timeLeft, hour, minutes) + ' ' + this.ampm;
 		}
 	};
@@ -95,20 +93,13 @@ clockoutApp.controller('ClockCtrl', function ($scope,$timeout) {
 			tempMin = accumulatedTimeArray[1];
 
 			tempMin = "0." + tempMin;
-			
-			console.log(tempMin);
 
 			min = parseFloat(tempMin);
 
 			min = (min * 60);
-			
-			console.log(min);
 
 			hour = +hour + +hrs; 
 			minutes = (+minutes + +min);
-
-			console.log('Min = ' + min);
-			console.log('Minutes = ' + minutes);
 
 			if(minutes > 59) {
 				hour++;
@@ -118,8 +109,6 @@ clockoutApp.controller('ClockCtrl', function ($scope,$timeout) {
 			if(minutes < 10){
 				minutes = "0" + minutes;
 			}
-			
-			console.log(minutes);
 			
 			determineMeridiem(hour);
 			
