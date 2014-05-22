@@ -147,7 +147,7 @@ clockoutApp.controller('ClockCtrl', function ($scope,$timeout) {
 	 * AM to PM and vice versa.
 	 */
 	var determineMeridiem = function(hour) {
-			if(hour > 11 && hour < 24)
+			if(hour > 11 || hour < 24)
 				$scope.ampm = 'PM';
 			else
 				$scope.ampm = 'AM';
