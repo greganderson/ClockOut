@@ -69,8 +69,9 @@ clockoutApp.controller('ClockCtrl', function ($scope,$timeout) {
 	/**************************** UMAIR START ************************/
 
 
-	$scope.calculate = function (hoursWorked, clockInTime) {
-		if(hoursWorked, clockInTime) {
+	$scope.calculate = function (clockInTime) {
+		var hoursWorked = $scope.hoursWorked + ($scope.granularity * .01);
+		if(hoursWorked && clockInTime) {
 			var timeArray, hour, minutes, totalTime, timeLeft;  
 			
 			var timeClockedIn = new Date(clockInTime);
