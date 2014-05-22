@@ -16,6 +16,7 @@
 <div ng-app="clockOut">
 
 	<div ng-controller="ClockCtrl">
+
 		<!-- Time picker -->
 		<div class="container-fluid">
 			<div class="row">
@@ -24,28 +25,32 @@
 					<pre class="alert alert-info">Time is: {{mytime | date:'shortTime' }}</pre>
 			</div>
 		</div>
+
+		<!-- Sliders -->
 		<div>
-			Hours so far: <input type="text" class="form-control" ng-model="time">
-		<!-- Slider -->
-		<div class="row">
-			<div range-slider min="0" max="40" model-min="0" model-max="hoursWorked" pin-handle="min" class="col-md-6"></div>
-		</div>
-		<div class="row">
-			<div range-slider min="0" max="100" model-min="0" model-max="granularity" pin-handle="min" class="col-md-6"></div>
-		</div>
+			Hours so far: <pre>{{hoursWorked + (granularity * .01)}}</pre>
+			<div class="row">
+				<div range-slider min="0" max="40" model-min="0" model-max="hoursWorked" pin-handle="min" class="col-md-6"></div>
+			</div>
+			<div class="row">
+				<div range-slider min="0" max="100" model-min="0" model-max="granularity" pin-handle="min" class="col-md-6"></div>
+			</div>
+		</div><br>
 
-		<pre>{{hoursWorked + (granularity * .01)}}</pre>
-
-		</div>
-		<br>
+		<!-- Display the clockout time -->
 		<div>{{ display() }}</div>
 
+		<!-- The timer -->
 		<div id="time">
 			<h3>Time remaining:</h3>
 			<h3>{{hoursRemaining}}:{{minutesRemaining}}:{{secondsRemaining}}</h3>
 
 		</div>
+
+		<!-- Start button -->
 		<button class="btn btn-default" ng-click="calculate(mytime);">START</button>
+
+		<!-- Sounds ready to play -->
 		<div>
 			<audio id="five_minutes">
 				<source src="time_alert.mp3" type="audio/mp3">
