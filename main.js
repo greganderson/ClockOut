@@ -8,6 +8,7 @@ clockoutApp.controller('ClockCtrl', function ($scope,$timeout) {
     $scope.counter = 0;
 	$scope.started = false;
 	$scope.d = new Date();
+	$scope.mytime = new Date();
 	$scope.ampm = 'null';
 	$scope.h = 0;
 	$scope.m = 0;
@@ -130,7 +131,10 @@ clockoutApp.controller('ClockCtrl', function ($scope,$timeout) {
 				hour++;
 				minutes = +minutes - 60;
 			}
+		
+			minutes = parseInt(minutes);
 
+			console.log('Minutes ' + minutes);
 			if(minutes < 10){
 				minutes = "0" + minutes;
 			}
@@ -143,7 +147,7 @@ clockoutApp.controller('ClockCtrl', function ($scope,$timeout) {
 				hour = 12;
 			}
 
-			return (hour + ':' + parseInt(minutes)); 
+			return (hour + ':' + minutes); 
 		}
 	
 	};
