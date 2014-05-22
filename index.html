@@ -16,12 +16,7 @@
 <div ng-app="clockOut">
 
 	<div ng-controller="ClockCtrl">
-
-		<!-- Slider -->
-		<div range-slider min="0" max="40" model-min="0" model-max="hoursWorked" pin-handle="min"></div>
-		<div range-slider min="0" max="100" model-min="0" model-max="granularity" pin-handle="min"></div>
-		{{hoursWorked + (granularity * .01)}}
-
+		
 		<!-- Time picker -->
 		<div class="container-fluid">
 			<div class="row">
@@ -32,6 +27,17 @@
 		</div>
 		<div>
 			Hours so far: <input type="text" class="form-control" ng-model="time">
+
+		<!-- Slider -->
+		<div class="row">
+			<div range-slider min="0" max="40" model-min="0" model-max="hoursWorked" pin-handle="min" class="col-md-6"></div>
+		</div>
+		<div class="row">
+			<div range-slider min="0" max="100" model-min="0" model-max="granularity" pin-handle="min" class="col-md-6"></div>
+		</div>
+
+		<pre>{{hoursWorked + (granularity * .01)}}</pre>
+
 		</div>
 		<br>
 		<div>{{ display() }}</div>
