@@ -30,6 +30,9 @@
 					<pre class="alert alert-info">Time is: {{mytime | date:'shortTime' }}</pre>
 			</div>
 		</div>
+		<div>
+			Hours so far: <input type="text" class="form-control" ng-model="time">
+		</div>
 		<br>
 		<div>{{ display() }}</div>
 
@@ -38,7 +41,7 @@
 			<h3>{{hoursRemaining}}:{{minutesRemaining}}:{{secondsRemaining}}</h3>
 
 		</div>
-		<button class="btn btn-default" ng-click="calculate();">START</button>
+		<button class="btn btn-default" ng-click="calculate(time, mytime);">START</button>
 		<div>
 			<audio id="five_minutes">
 				<source src="time_alert.mp3" type="audio/mp3">

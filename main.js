@@ -43,26 +43,20 @@ clockoutApp.controller('ClockCtrl', function ($scope,$timeout) {
 			mytimeout = $timeout($scope.onTimeout,10);
     }
 
-	$scope.start = function() {
+	$scope.start = function(time) {
 		// Prevent user from starting more than once
 		if ($scope.started)
 			return;
 		$scope.started = true;
 		// TODO: Calculate the time using $scope.hoursWorked
 		var time = $scope.hoursWorked + ($scope.granularity * .01);
-		console.log(time);
 		// - 30 at the end for the buffer
-		var total = (40.0 - time) * 60 * 60 - 30;
-
-		if ($scope.timeOfDay == 'PM')
-			$scope.h += 12;
+		var total = ((40.0 - time) * 60 * 60) - 30;
 		
 		var overHours = $scope.d.getHours() - $scope.h;
 		var overMinutes = $scope.d.getMinutes() - $scope.m;
 
 		total = total - (overHours * 60 * 60) - (overMinutes * 60);
-
-
 
 		$scope.counter = total;
 
@@ -75,19 +69,22 @@ clockoutApp.controller('ClockCtrl', function ($scope,$timeout) {
 	/**************************** UMAIR START ************************/
 
 
-	$scope.calculate = function (_timeIn) {
-		if(_timeIn) {
-			var timeArray, hour, minutes, totalTime, timeLeft, hoursWorked; 
+	$scope.calculate = function (hoursWorked, clockInTime) {
+		if(hoursWorked, clockInTime) {
+			var timeArray, hour, minutes, totalTime, timeLeft;  
 			
-			hour = $scope.d.getHours();
-			minutes = $scope.d.getMinutes();
-			timeLeft = 40 - hour;
-			
+			var timeClockedIn = new Date(clockInTime);
+
+
+			hour = timeClockedIn.getHours();
+			minutes = timeClockedIn.getMinutes();
+
+			timeLeft = 40 - hoursWorked;
 
 			$scope.h = parseInt(hour);
 			$scope.m = parseInt(minutes);
 
-			$scope.start(hour);
+			$scope.start(hoursWorked);
 			
 			$scope.message = 'You should clock out at: ' + calculateTime(timeLeft, hour, minutes) + ' ' + this.ampm;
 		}
@@ -164,9 +161,3 @@ clockoutApp.controller('ClockCtrl', function ($scope,$timeout) {
 		return this.message;	
 	};
 });
-
-
-clockoutApp.controller('SliderController', function SliderController($scope) {
-		// just some values for the sliders
-	}
-);
