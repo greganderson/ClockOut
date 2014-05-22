@@ -1,8 +1,11 @@
 <html ng-app="clockOut">
 <head>
 	<title>Clock Out</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.js"></script>
 	<script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
+	<script src="http://danielcrisp.github.io/angular-rangeslider/angular.rangeSlider.js"></script>
+	<link href="http://danielcrisp.github.io/angular-rangeslider/angular.rangeSlider.css" rel="stylesheet">
 	<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 	<script type="text/javascript" src="main.js"></script>
 </head>
@@ -10,19 +13,22 @@
 
 <div id="body">
 <h1>Time remaining before clock out</h1>
-
 <div ng-app="clockOut">
 
 	<div ng-controller="ClockCtrl">
+
+		<!-- Slider -->
+		<div range-slider min="0" max="40" model-min="0" model-max="hoursWorked" pin-handle="min"></div>
+		<div range-slider min="0" max="100" model-min="0" model-max="granularity" pin-handle="min"></div>
+		{{hoursWorked + (granularity * .01)}}
+
+		<!-- Time picker -->
 		<div class="container-fluid">
 			<div class="row">
 					Time clocked in:
 					<timepicker ng-model="mytime"></timepicker>
 					<pre class="alert alert-info">Time is: {{mytime | date:'shortTime' }}</pre>
 			</div>
-		</div>
-		<div>
-			Hours so far: <input type="text" class="form-control" ng-model="time">
 		</div>
 		<br>
 		<div>{{ display() }}</div>
@@ -32,7 +38,7 @@
 			<h3>{{hoursRemaining}}:{{minutesRemaining}}:{{secondsRemaining}}</h3>
 
 		</div>
-		<button class="btn btn-default" ng-click="calculate(time);">START</button>
+		<button class="btn btn-default" ng-click="calculate();">START</button>
 		<div>
 			<audio id="five_minutes">
 				<source src="time_alert.mp3" type="audio/mp3">

@@ -1,4 +1,4 @@
-var clockoutApp = angular.module('clockOut', ['ui.bootstrap']);
+var clockoutApp = angular.module('clockOut', ['ui.bootstrap', 'ui-rangeSlider']);
 
 clockoutApp.controller('ClockCtrl', function ($scope,$timeout) {
 	$scope.time = 0;
@@ -11,6 +11,10 @@ clockoutApp.controller('ClockCtrl', function ($scope,$timeout) {
 	$scope.ampm = 'null';
 	$scope.h = 0;
 	$scope.m = 0;
+
+	// For the sliders
+	$scope.hoursWorked = 20;
+	$scope.granularity = 0;
 
 	var TimepickerDemoCtrl = function ($scope) {
 		$scope.mytime = new Date();
@@ -39,11 +43,14 @@ clockoutApp.controller('ClockCtrl', function ($scope,$timeout) {
 			mytimeout = $timeout($scope.onTimeout,10);
     }
 
-	$scope.start = function(time) {
+	$scope.start = function() {
 		// Prevent user from starting more than once
 		if ($scope.started)
 			return;
 		$scope.started = true;
+		// TODO: Calculate the time using $scope.hoursWorked
+		var time = $scope.hoursWorked + ($scope.granularity * .01);
+		console.log(time);
 		// - 30 at the end for the buffer
 		var total = (40.0 - time) * 60 * 60 - 30;
 
@@ -157,3 +164,9 @@ clockoutApp.controller('ClockCtrl', function ($scope,$timeout) {
 		return this.message;	
 	};
 });
+
+
+clockoutApp.controller('SliderController', function SliderController($scope) {
+		// just some values for the sliders
+	}
+);
