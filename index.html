@@ -22,7 +22,6 @@
 			<div class="row">
 					Time clocked in:
 					<timepicker ng-model="mytime"></timepicker>
-					<pre class="alert alert-info">Time is: {{mytime | date:'shortTime' }}</pre>
 			</div>
 		</div>
 
@@ -33,7 +32,7 @@
 				<div range-slider min="0" max="40" model-min="0" model-max="hoursWorked" pin-handle="min" class="col-md-6"></div>
 			</div>
 			<div class="row">
-				<div range-slider min="0" max="100" model-min="0" model-max="granularity" pin-handle="min" class="col-md-6"></div>
+				<div range-slider min="0" max="99" model-min="0" model-max="granularity" pin-handle="min" class="col-md-6"></div>
 			</div>
 		</div><br>
 
