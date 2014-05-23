@@ -49,7 +49,6 @@ clockoutApp.controller('ClockCtrl', function ($scope,$timeout) {
 		if ($scope.started)
 			return;
 		$scope.started = true;
-		// TODO: Calculate the time using $scope.hoursWorked
 		var time = $scope.hoursWorked + ($scope.granularity * .01);
 		// - 30 at the end for the buffer
 		var total = ((40.0 - time) * 60 * 60) - 30;
@@ -79,6 +78,7 @@ clockoutApp.controller('ClockCtrl', function ($scope,$timeout) {
 		$scope.hoursRemaining = 0;
 		$scope.minutesRemaining = 0;
 		$scope.secondsRemaining = 0;
+		$timeout.cancel(mytimeout);
 	}
 
 	$scope.calculate = function (clockInTime) {
