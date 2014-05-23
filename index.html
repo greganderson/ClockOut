@@ -12,8 +12,8 @@
 <body>
 
 <div id="body">
+<div ng-app="clockOut" class="container theme-showcase" role="main">
 <h1>Time remaining before clock out</h1>
-<div ng-app="clockOut">
 
 	<div ng-controller="ClockCtrl">
 
@@ -40,15 +40,15 @@
 		<div>{{ display() }}</div>
 
 		<!-- The timer -->
-		<div id="time">
+		<div id="time" class="alert alert-success">
 			<h3>Time remaining:</h3>
 			<h3>{{hoursRemaining}}:{{minutesRemaining}}:{{secondsRemaining}}</h3>
 
 		</div>
 
 		<!-- Start button -->
-		<button class="btn btn-primary" ng-click="calculate(mytime);">START</button>
-		<button class="btn btn-primary" ng-click="reset();">RESET</button>
+		<button type="button" class="btn btn-lg btn-primary" ng-click="calculate(mytime);">START</button>
+		<button type="button" class="btn btn-lg btn-danger" ng-click="reset();">RESET</button>
 
 		<!-- Sounds ready to play -->
 		<div>
