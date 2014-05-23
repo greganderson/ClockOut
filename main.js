@@ -99,7 +99,7 @@ clockoutApp.controller('ClockCtrl', function ($scope,$timeout) {
 
 			$scope.start(hoursWorked);
 			
-			$scope.message = 'You should clock out at: ' + calculateTime(timeLeft, hour, minutes) + ' ' + this.ampm;
+			$scope.message = calculateTime(timeLeft, hour, minutes) + ' ' + this.ampm;
 		}
 	};
 	
